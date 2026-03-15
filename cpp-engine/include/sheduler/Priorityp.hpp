@@ -1,0 +1,32 @@
+#pragma once
+#include <vector>
+#include "ISheduler.hpp"
+using namespace std;
+
+class Priorityp : public ISheduler
+{
+public:
+    int selectProcess(
+        int currentTime,
+        vector<Process> &processes,
+        int currentremaining) override
+    {
+        int idx = -1;
+        int best = 1e9;
+
+        for (int i = 0; i < processes.size(); i++)
+        {
+            auto &p = processes[i];
+
+            if (p.at <= currentTime && p.remainingtime > 0)
+            {
+                if (p.priority < best)
+                {
+                    best = p.priority;
+                    idx = i;
+                }
+            }
+        }
+        return idx;
+    }
+};

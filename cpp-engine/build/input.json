@@ -1,0 +1,9 @@
+{
+  "algorithm": "MultilevelQueue",
+  "processes": [
+    {"id": "1", "arrival": 0, "burst": 4, "queueLevel": 0},
+    {"id": "2", "arrival": 1, "burst": 3, "queueLevel": 1},
+    {"id": "3", "arrival": 2, "burst": 2, "queueLevel": 0},
+    {"id": "4", "arrival": 3, "burst": 5, "queueLevel": 1}
+  ]
+}
