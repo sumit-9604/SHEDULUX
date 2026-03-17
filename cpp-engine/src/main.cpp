@@ -21,7 +21,7 @@ using json = nlohmann::json;
 
 int main()
 {
-    cout << "SCHEDULUX CPU ENGINE RUNNING\n";
+    cerr << "SCHEDULUX CPU ENGINE RUNNING\n";
 
     try
     {
@@ -29,8 +29,8 @@ int main()
         json input;
         cin >> input;
 
-        cout << "JSON RECEIVED:\n";
-        cout << input.dump(4) << endl;
+        cerr << "JSON RECEIVED:\n";
+        cerr << input.dump(4) << endl;
 
         // Parse processes
         auto processes = JsonHandler::parseProcesses(input);
@@ -41,7 +41,7 @@ int main()
         // Read algorithm name
         string algo = input.value("algorithm", "FCFS");
 
-        cout << "ALGORITHM SELECTED: " << algo << endl;
+        cerr << "ALGORITHM SELECTED: " << algo << endl;
 
         // Round Robin quantum support
         int quantum = input.value("quantum", 2);
