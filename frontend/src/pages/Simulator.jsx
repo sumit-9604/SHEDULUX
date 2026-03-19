@@ -13,7 +13,7 @@ import useSimulation from '../Hooks/useSimulation.js'
 import useSimulationStore from '../stores/simulationStore.js'
 import { seedProcesses } from '../utils/helpers.js'
 import Navbar from '../components/shared/Navbar.jsx'
-
+import Footer from '../components/layouts/Footer.jsx'
 export default function Simulator() {
   const { run } = useSimulation()
   const { loading, error, result, processes, addProcess, clearProcesses, setError } = useSimulationStore()
@@ -103,6 +103,8 @@ export default function Simulator() {
 
         {result && <PlaybackControls />}
       </div>
-    </div></>
+    </div>
+    <Footer/>
+    </>
   )
 }
