@@ -144,7 +144,6 @@ function collapseTimeline(rawTimeline) {
 }
 
 function transformOutput(raw, inputProcesses) {
-  // Build a lookup map: id -> process meta + color
   const procMap = {};
   inputProcesses.forEach((p, i) => {
     procMap[String(p.id)] = {
@@ -154,18 +153,19 @@ function transformOutput(raw, inputProcesses) {
     };
   });
 
-  // Collapse per-tick timeline into blocks
   const blocks = collapseTimeline(raw.timeline);
 
-  const timeline = blocks.map((b) => ({
-    pid: b.pid,
-    name: procMap[b.pid]?.name || "P" + b.pid,
-    color: procMap[b.pid]?.color || "#888888",
-    start: b.start,
-    end: b.end,
-  }));
+  // Filter out IDLE blocks + fix name
+  const timeline = blocks
+    .filter((b) => b.pid !== "IDLE" && b.pid !== "idle" && b.pid !== "-1")
+    .map((b) => ({
+      pid: b.pid,
+      name: procMap[b.pid]?.name || "P" + b.pid,
+      color: procMap[b.pid]?.color || "#888888",
+      start: b.start,
+      end: b.end,
+    }));
 
-  // Enrich raw process stats with metadata
   const processes = raw.processes.map((p, i) => {
     const meta = procMap[String(p.id)] || {};
     return {

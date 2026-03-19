@@ -1,21 +1,28 @@
 import { create } from 'zustand'
 
-let nextId = 1
-
 const useSimulationStore = create((set, get) => ({
   // processes
+  _nextId: 1,
+
+  addProcess: (p) => {
+    const id = get()._nextId
+    set(s => ({
+      _nextId: s._nextId + 1,
+      processes: [...s.processes, {
+        ...p,
+        id,
+        name: 'P' + id
+      }]
+    }))
+  },
+
   processes: [],
-  addProcess: (p) => set(s => ({
-    processes: [...s.processes, {
-      ...p,
-      id: nextId++,
-      name: 'P' + nextId
-    }]
-  })),
+
   removeProcess: (id) => set(s => ({
     processes: s.processes.filter(p => p.id !== id)
   })),
-  clearProcesses: () => set({ processes: [] }),
+
+  clearProcesses: () => set({ processes: [], _nextId: 1 }), // ← resets counter
 
   // algorithm
   algorithm: 'FCFS',
@@ -30,11 +37,13 @@ const useSimulationStore = create((set, get) => ({
 
   // playback
   frame: 0,
-  setFrame: (f) => set({ frame: f }),
+  setFrame: (f) => set(s => ({        // ← supports both value and function
+    frame: typeof f === 'function' ? f(s.frame) : f
+  })),
   playing: false,
   setPlaying: (p) => set({ playing: p }),
   speed: 1,
-  setSpeed: (s) => set({ speed: s }),
+  setSpeed: (sp) => set({ speed: sp }), // ← renamed param to avoid shadowing set
 
   // loading / error
   loading: false,
