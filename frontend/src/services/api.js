@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-  baseURL: 'http://localhost:3001',
+  baseURL: 'https://shedulux.onrender.com',
   timeout: 15000,
   headers: { 'Content-Type': 'application/json' }
 })
