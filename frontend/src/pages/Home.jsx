@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import {motion as Motion} from 'framer-motion'
+import {motion as Motion ,AnimatePresence} from 'framer-motion'
 export default function Home() {
   const bgRef = useRef(null)
   const logoRef = useRef(null)
