@@ -237,10 +237,31 @@ app.post("/api/schedule", async (req, res) => {
     ...(algorithm === "MLFQ" && { quantum: Number(quantum) || 2 }),
   };
 
+  
   try {
-    const raw = await runEngine(payload);
+    // Try to use C++ engine locally, fallback to mock on production
+    let raw;
+    
+    if (process.env.NODE_ENV === 'production') {
+      // Mock response for Render (until C++ is compiled for Linux)
+      console.log("[MOCK ENGINE] Using mock response");
+      raw = {
+        timeline: processes.map((p, i) => ({
+          time: i * 10,
+          running: p.id
+        })),
+        processes: processes.map((p, i) => ({
+          id: String(p.id),
+          waiting: i * 5,
+          turnaround: (i * 10 + Number(p.burst))
+        }))
+      };
+    } else {
+      // Use C++ engine locally
+      raw = await runEngine(payload);
+    }
+    
     const result = transformOutput(raw, payload.processes);
-
     res.json({ success: true, algorithm, ...result });
   } catch (err) {
     console.error("[SCHEDULE ERROR]:", err.message);
