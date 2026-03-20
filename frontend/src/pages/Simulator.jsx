@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion as Motion} from 'framer-motion'
 import { useEffect } from 'react'
 import AlgorithmSelector from '../components/simulation/AlgoSelector.jsx'
 import ProcessForm from '../components/simulation/ProcessForm.jsx'
@@ -32,7 +32,7 @@ export default function Simulator() {
       
 
       {/* LEFT SIDEBAR */}
-      <motion.div
+      <Motion.div
         initial={{ x: -260, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.4 }}
@@ -50,7 +50,7 @@ export default function Simulator() {
               {error}
             </div>
           )}
-          <motion.button
+          <Motion.button
             whileHover={{ scale: 1.01, boxShadow: '0 0 20px rgba(124,92,255,0.4)' }}
             whileTap={{ scale: 0.98 }}
             onClick={() => { setError(null); run() }}
@@ -58,9 +58,9 @@ export default function Simulator() {
             className="w-full bg-gradient-to-r from-accent/80 to-glow/80 border border-accent text-white font-hud text-[10px] tracking-[3px] py-3 rounded-lg disabled:opacity-50"
           >
             {loading ? 'RUNNING...' : '▶ EXECUTE'}
-          </motion.button>
+          </Motion.button>
         </div>
-      </motion.div>
+      </Motion.div>
 
       {/* CENTER */}
       <div className="flex-1 flex flex-col overflow-hidden">
@@ -77,11 +77,11 @@ export default function Simulator() {
 
           {!loading && !result && (
             <div className="flex-1 flex flex-col items-center justify-center gap-4 text-center">
-              <motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 2, repeat: Infinity }}>
+              <Motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 2, repeat: Infinity }}>
                 <div className="w-16 h-16 border border-accent/20 rounded-xl flex items-center justify-center">
                   <div className="w-8 h-8 border border-accent/40 rounded-lg" />
                 </div>
-              </motion.div>
+              </Motion.div>
               <p className="font-hud text-[10px] tracking-[3px] text-gray-600">
                 ADD PROCESSES AND HIT EXECUTE
               </p>
@@ -89,7 +89,7 @@ export default function Simulator() {
           )}
 
           {!loading && result && (
-            <motion.div
+            <Motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="flex flex-col gap-5"
@@ -97,7 +97,7 @@ export default function Simulator() {
               <div className="glass-card p-4"><GanttChart /></div>
               <StatsPanel />
               <div className="glass-card p-4"><ProcessTable /></div>
-            </motion.div>
+            </Motion.div>
           )}
         </div>
 

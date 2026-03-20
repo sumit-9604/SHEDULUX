@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion as Motion, AnimatePresence } from 'framer-motion'
 import useSimulationStore from '../../stores/simulationStore'
 
 export default function CPUCore() {
@@ -12,7 +12,7 @@ export default function CPUCore() {
 
       <div className="relative w-24 h-24">
         {/* Outer spinning ring */}
-        <motion.div
+        <Motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
           className="absolute inset-0 rounded-full"
@@ -24,7 +24,7 @@ export default function CPUCore() {
         />
 
         {/* Inner counter ring */}
-        <motion.div
+        <Motion.div
           animate={{ rotate: -360 }}
           transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
           className="absolute inset-2 rounded-full"
@@ -35,7 +35,7 @@ export default function CPUCore() {
         />
 
         {/* Core body */}
-        <motion.div
+        <Motion.div
           animate={current ? { boxShadow: [`0 0 10px ${current.color}30`, `0 0 25px ${current.color}60`, `0 0 10px ${current.color}30`] } : {}}
           transition={{ duration: 1, repeat: Infinity }}
           className="absolute inset-4 rounded-xl flex flex-col items-center justify-center gap-1"
@@ -46,7 +46,7 @@ export default function CPUCore() {
         >
           <span className="font-hud text-[7px] text-gray-600 tracking-[1px]">CORE</span>
           <AnimatePresence mode="wait">
-            <motion.span
+            <Motion.span
               key={current?.pid || 'idle'}
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -56,14 +56,14 @@ export default function CPUCore() {
               style={{ color: current ? current.color : '#3a3a5a', textShadow: current ? `0 0 10px ${current.color}` : 'none' }}
             >
               {current ? current.name : 'IDLE'}
-            </motion.span>
+            </Motion.span>
           </AnimatePresence>
           {current && (
             <span className="font-mono text-[8px] text-gray-600">
               rem {Math.max(0, Math.ceil(current.end - frame))}
             </span>
           )}
-        </motion.div>
+        </Motion.div>
       </div>
     </div>
   )

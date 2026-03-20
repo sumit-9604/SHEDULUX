@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion as Motion} from 'framer-motion'
 import usePlayback from '../../Hooks/usePlayback'
 import useSimulationStore from '../../stores/simulationStore'
 
@@ -25,13 +25,13 @@ export default function PlaybackControls() {
         className="w-7 h-7 glass-card flex items-center justify-center text-[11px] text-gray-400 hover:text-accent transition-colors rounded">
         ⏮
       </button>
-      <motion.button
+      <Motion.button
         whileTap={{ scale: 0.9 }}
         onClick={togglePlay}
         className="w-7 h-7 glass-card flex items-center justify-center text-[11px] text-gray-400 hover:text-accent transition-colors rounded"
       >
         {playing ? '⏸' : '▶'}
-      </motion.button>
+      </Motion.button>
       <button onClick={stepForward}
         className="w-7 h-7 glass-card flex items-center justify-center text-[11px] text-gray-400 hover:text-accent transition-colors rounded">
         ⏭
@@ -42,12 +42,12 @@ export default function PlaybackControls() {
       </span>
 
       <div className="flex-1 h-1 bg-white/5 rounded cursor-pointer relative" onClick={handleBarClick}>
-        <motion.div
+        <Motion.div
           className="h-full bg-gradient-to-r from-accent to-cyan rounded relative"
           style={{ width: `${pct}%` }}
         >
           <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-accent rounded-full shadow-[0_0_8px_#7c5cff]" />
-        </motion.div>
+        </Motion.div>
       </div>
 
       <button onClick={cycleSpeed}

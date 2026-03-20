@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion as Motion, AnimatePresence } from 'framer-motion'
 import useSimulationStore from '../../stores/simulationStore'
 
 export default function ProcessForm() {
@@ -33,14 +33,14 @@ export default function ProcessForm() {
         ))}
       </div>
 
-      <motion.button
+      <Motion.button
         whileHover={{ scale: 1.01 }}
         whileTap={{ scale: 0.98 }}
         onClick={handleAdd}
         className="w-full border border-cyan/50 text-cyan font-hud text-[9px] tracking-[2px] py-2 rounded hover:bg-cyan/10 transition-all"
       >
         + INJECT PROCESS
-      </motion.button>
+      </Motion.button>
 
       <div className="mt-3">
         <div className="flex items-center justify-between mb-2">
@@ -57,7 +57,7 @@ export default function ProcessForm() {
         <div className="flex flex-col gap-1.5 max-h-48 overflow-y-auto pr-1">
           <AnimatePresence>
             {processes.map((p, i) => (
-              <motion.div
+              <Motion.div
                 key={p.id}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -74,7 +74,7 @@ export default function ProcessForm() {
                 </span>
                 <button onClick={() => removeProcess(p.id)}
                   className="text-danger/30 hover:text-danger text-sm opacity-0 group-hover:opacity-100 transition-all">×</button>
-              </motion.div>
+              </Motion.div>
             ))}
           </AnimatePresence>
         </div>

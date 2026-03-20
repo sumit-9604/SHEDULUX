@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion as Motion } from 'framer-motion'
 import useSimulationStore from '../../stores/simulationStore'
 import { ALGORITHMS } from '../../utils/helpers'
 
@@ -13,7 +13,7 @@ export default function AlgorithmSelector() {
       </div>
       <div className="grid grid-cols-2 gap-2">
         {ALGORITHMS.map(a => (
-          <motion.button
+          <Motion.button
             key={a.key}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.97 }}
@@ -25,18 +25,18 @@ export default function AlgorithmSelector() {
             }`}
           >
             {algorithm === a.key && (
-              <motion.div
+              <Motion.div
                 layoutId="algoActive"
                 className="absolute inset-0 bg-accent/10"
               />
             )}
             <span className="relative z-10">{a.label}</span>
-          </motion.button>
+          </Motion.button>
         ))}
       </div>
 
       {(algorithm === 'RoundRobin' || algorithm === 'MLFQ') && (
-        <motion.div
+        <Motion.div
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
           className="mt-3 flex items-center gap-3"
@@ -48,7 +48,7 @@ export default function AlgorithmSelector() {
             className="flex-1 accent-violet-500"
           />
           <span className="font-hud text-[11px] text-accent min-w-[16px]">{quantum}</span>
-        </motion.div>
+        </Motion.div>
       )}
     </div>
   )

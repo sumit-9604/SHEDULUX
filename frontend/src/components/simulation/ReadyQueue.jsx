@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion as Motion, AnimatePresence } from 'framer-motion'
 import useSimulationStore from '../../stores/simulationStore'
 
 export default function ReadyQueue() {
@@ -19,7 +19,7 @@ export default function ReadyQueue() {
             <span className="font-mono text-[10px] text-gray-600">EMPTY</span>
           ) : (
             ready.map(p => (
-              <motion.div
+              <Motion.div
                 key={p.id}
                 initial={{ opacity: 0, x: -15, scale: 0.8 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}
@@ -32,7 +32,7 @@ export default function ReadyQueue() {
                 }}
               >
                 {p.name}
-              </motion.div>
+              </Motion.div>
             ))
           )}
         </AnimatePresence>

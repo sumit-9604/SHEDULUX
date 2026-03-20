@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
+import {motion as Motion} from 'framer-motion'
 export default function Home() {
   const bgRef = useRef(null)
   const logoRef = useRef(null)
@@ -218,7 +218,7 @@ export default function Home() {
       <canvas ref={bgRef} className="absolute inset-0 z-0" />
 
       <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-4">
-        <motion.div
+        <Motion.div
           style={{
             perspective: 1200,
             rotateX: mouseTilt.x,
@@ -227,9 +227,9 @@ export default function Home() {
           transition={{ type: 'spring', stiffness: 100, damping: 40 }}
         >
           <canvas ref={logoRef} width={360} height={360} className="block" />
-        </motion.div>
+        </Motion.div>
 
-        <motion.div
+        <Motion.div
           initial={{opacity:0}} animate={{opacity: powered ? 1 : 0.15}}
           transition={{duration:1}}
           className={`font-hud text-5xl font-black tracking-[10px] transition-all duration-1000 ${
@@ -237,7 +237,7 @@ export default function Home() {
           }`}
         >
           SHEDULUX
-        </motion.div>
+        </Motion.div>
 
         <div className={`font-mono text-xs tracking-[6px] transition-all duration-700 ${
           charged ? 'text-white/50' : 'text-gray-700'
@@ -246,17 +246,17 @@ export default function Home() {
         </div>
 
         {!powered && (
-          <motion.div
+          <Motion.div
             animate={{opacity:[0.3,1,0.3]}} transition={{duration:2,repeat:Infinity}}
             className="font-mono text-[11px] tracking-[3px] text-gray-600 mt-4"
           >
             [ CLICK ANYWHERE TO POWER ON ]
-          </motion.div>
+          </Motion.div>
         )}
 
         <AnimatePresence>
           {charged && (
-            <motion.div
+            <Motion.div
               initial={{opacity:0,y:16}} animate={{opacity:1,y:0}}
               className="flex gap-4 mt-4 pointer-events-auto"
               onClick={e=>e.stopPropagation()}
@@ -269,7 +269,7 @@ export default function Home() {
                 onClick={()=>navigate('/compare')}
                 className="px-10 py-3 border border-white/15 text-white/60 font-hud text-[11px] tracking-[4px] hover:border-white/50 hover:text-white transition-all"
               >COMPARE ALGOS</button>
-            </motion.div>
+            </Motion.div>
           )}
         </AnimatePresence>
 

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion as Motion } from 'framer-motion'
 import { runCompare } from '../services/api.js'
 import useSimulationStore from '../stores/simulationStore.js'
 import Loader from '../components/shared/Loader.jsx'
@@ -25,13 +25,13 @@ export default function Compare() {
 
   return (
     <div className="p-6 max-w-6xl mx-auto">
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+      <Motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
         <div className="font-hud text-[9px] tracking-[4px] text-accent mb-2">ALGORITHM COMPARISON</div>
         <h2 className="font-hud text-2xl font-black text-white mb-6">Compare All Algorithms</h2>
 
         {error && <div className="text-danger font-mono text-sm mb-4">{error}</div>}
 
-        <motion.button
+        <Motion.button
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           onClick={handleCompare}
@@ -39,14 +39,14 @@ export default function Compare() {
           className="mb-6 px-6 py-2.5 bg-gradient-to-r from-accent to-cyan text-white font-hud text-[10px] tracking-[3px] rounded-lg disabled:opacity-50"
         >
           {loading ? 'RUNNING ALL...' : 'RUN COMPARISON'}
-        </motion.button>
+        </Motion.button>
 
         {loading && <Loader text="RUNNING ALL ALGORITHMS" />}
 
         {!loading && results.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {results.map((r, i) => (
-              <motion.div
+              <Motion.div
                 key={r.algo}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -69,11 +69,11 @@ export default function Compare() {
                     </div>
                   ))}
                 </div>
-              </motion.div>
+              </Motion.div>
             ))}
           </div>
         )}
-      </motion.div>
+      </Motion.div>
     </div>
   )
 }

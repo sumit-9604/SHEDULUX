@@ -1,15 +1,15 @@
-import { motion } from 'framer-motion'
+import { motion as Motion } from 'framer-motion'
 
 export default function Loader({ text = 'PROCESSING' }) {
   return (
     <div className="flex flex-col items-center justify-center gap-4 py-12">
       <div className="relative w-16 h-16">
-        <motion.div
+        <Motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
           className="absolute inset-0 rounded-full border-2 border-transparent border-t-accent"
         />
-        <motion.div
+        <Motion.div
           animate={{ rotate: -360 }}
           transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }}
           className="absolute inset-2 rounded-full border-2 border-transparent border-t-cyan"

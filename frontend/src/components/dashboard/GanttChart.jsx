@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import  { motion as Motion } from 'framer-motion'
 import useSimulationStore from '../../stores/simulationStore'
 
 export default function GanttChart() {
@@ -33,7 +33,7 @@ export default function GanttChart() {
                     const isCurrent = b.start <= frame && b.end > frame
 
                     return (
-                      <motion.div
+                      <Motion.div
                         key={b.start}
                         initial={{ opacity: 0.1 }}
                         animate={{
@@ -46,7 +46,7 @@ export default function GanttChart() {
                         title={`${b.name}: T${b.start}–T${b.end}`}
                       >
                         {(b.end - b.start) > 1 ? b.name : ''}
-                      </motion.div>
+                      </Motion.div>
                     )
                   })}
                 </div>

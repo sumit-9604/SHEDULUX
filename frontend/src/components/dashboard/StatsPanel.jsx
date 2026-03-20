@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion as Motion} from 'framer-motion'
 import useSimulationStore from '../../stores/simulationStore'
 
 export default function StatsPanel() {
@@ -16,7 +16,7 @@ export default function StatsPanel() {
   return (
     <div className="grid grid-cols-2 gap-3">
       {cards.map((c, i) => (
-        <motion.div
+        <Motion.div
           key={c.label}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -28,7 +28,7 @@ export default function StatsPanel() {
             {c.value}
           </div>
           <div className="h-0.5 bg-white/5 rounded mt-2 overflow-hidden">
-            <motion.div
+            <Motion.div
               initial={{ width: 0 }}
               animate={{ width: '100%' }}
               transition={{ duration: 1, delay: i * 0.1 }}
@@ -36,7 +36,7 @@ export default function StatsPanel() {
               style={{ background: c.color }}
             />
           </div>
-        </motion.div>
+        </Motion.div>
       ))}
     </div>
   )
