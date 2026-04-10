@@ -57,6 +57,11 @@ app.get("/health", (req, res) => {
   });
 });
 
+app.get("/", (req, res) => {
+  res.status(200).send("SHEDULUX Backend Running");
+});
+
+
 // ─── Core Engine Runner ───────────────────────────────────────────────────────
 
 function runEngine(payload) {
